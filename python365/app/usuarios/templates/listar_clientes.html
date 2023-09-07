@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for message in get_flashed_messages() %}
+
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" data-dismiss="alert" class="close">
+                &times;
+            </button>
+            {{ message }}
+        </div>
+
+    {% endfor %}
+
+    <h1>Lista de clientes</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>usuario</th>
+                <th>correo</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.user }}</td>
+                    <td>{{ cliente.email }}</td>
+                    <td><a href="/usuarios/edit/{{ cliente.id }}" class="btn btn-info">Editar</a></td>
+                    <td><a href="/usuarios/delete/{{ cliente.id }}" class="btn btn-info">Eliminar</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
